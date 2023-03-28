@@ -379,21 +379,6 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Demonstrate deprecated task behavior.
-     *
-     * Demonstrate what happens when using a task that is created via
-     * direct instantiation, which omits initialization done by the
-     * container.  Emits a warning message.
-     */
-    public function tryDeprecated()
-    {
-        // Calling 'new' directly without manually setting
-        // up dependencies will result in a deprecation warning.
-        // @see RoboFile::trySuccess()
-        return (new \Robo\Task\Base\Exec('pwd'))->run();
-    }
-
-    /**
      * Demonstrate the use of a collection builder to chain multiple tasks
      * together into a collection, which is executed once constructed.
      *
