@@ -1,7 +1,5 @@
 <?php
 
-use Robo\Result;
-
 use Consolidation\AnnotatedCommand\CommandData;
 use Consolidation\OutputFormatters\Options\FormatterOptions;
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
@@ -67,28 +65,9 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Demonstrates Robo input APIs using ConsoleIO (recommended).
-     */
-    public function tryInput(ConsoleIO $io)
-    {
-        $io->say('The <b>expression</b> <bogus>is</bogus> <info>a < b</> it even works');
-        $answer = $io->ask('how are you?');
-        $io->say('You are '.$answer);
-        $yes = $io->confirm('Do you want one more question?');
-        if (!$yes) {
-            return Result::cancelled();
-        }
-        $lang = $io->ask('what is your favorite scripting language?', 'PHP');
-        $io->say($lang);
-        $pin = $io->askHidden('Ok, now tell your PIN code (it is hidden)');
-        $io->yell('Ha-ha, your pin code is: '.$pin);
-        $io->say('Bye!');
-    }
-
-    /**
      * Demonstrate Robo configuration.
      *
-     * Config values are loaded from the followig locations:
+     * Config values are loaded from the following locations:
      *
      *  - [Robo Project]/robo.yml
      *  - $HOME/.robo/robo.yml
@@ -248,7 +227,7 @@ class RoboFile extends \Robo\Tasks
      * Demonstrate Robo boolean options.
      *
      * @param array $opts The options.
-     * @option boolean $silent Supress output.
+     * @option boolean $silent Suppress output.
      */
     public function tryOptbool(ConsoleIO $io, $opts = ['silent|s' => false])
     {
@@ -301,7 +280,7 @@ class RoboFile extends \Robo\Tasks
      *   species: Species
      *   legs: Legs
      *   food: Favorite Food
-     *   id: Id
+     *   id: ID
      * @return PropertyList
      */
     public function tryInfo()
@@ -352,7 +331,7 @@ class RoboFile extends \Robo\Tasks
      *
      * @return \Consolidation\OutputFormatters\StructuredData\RowsOfFields
      */
-    public function tryFormatters($somthing = 'default', $options = ['format' => 'table', 'fields' => ''])
+    public function tryFormatters($something = 'default', $options = ['format' => 'table', 'fields' => ''])
     {
         $outputData = [
             'en' => [ 'first' => 'One',  'second' => 'Two',  'third' => 'Three', 'fourth' => 'Four', ],
@@ -397,19 +376,6 @@ class RoboFile extends \Robo\Tasks
         }
 
         return $result;
-    }
-
-    /**
-     * Demonstrate what happens when a command or a task
-     * throws an exception.  Note that typically, Robo commands
-     * should return Result objects rather than throw exceptions.
-     */
-    public function tryException($options = ['task' => false])
-    {
-        if (!$options['task']) {
-            throw new RuntimeException('Command failed with an exception.');
-        }
-        return new ExceptionTask('Task failed with an exception.');
     }
 
     /**
@@ -542,37 +508,10 @@ class RoboFile extends \Robo\Tasks
         return $result;
     }
 
-    /**
-     * Description
-     * @param $options
-     * @option delay Miliseconds delay
-     * @return type
-     */
-    public function tryProgress(ConsoleIO $io, $options = ['delay' => 500])
-    {
-        $delay = $options['delay'];
-        $delayUntilProgressStart = \Robo\Robo::config()->get(\Robo\Config::PROGRESS_BAR_AUTO_DISPLAY_INTERVAL);
-        $io->say("Progress bar will display after $delayUntilProgressStart seconds of activity.");
-
-        $processList = range(1, 10);
-        return $this->collectionBuilder($io)
-            ->taskForEach($processList)
-            ->iterationMessage('Processing {value}')
-            ->call(
-                function ($value) use($delay) {
-                    // TaskForEach::call should only be used to do
-                    // non-Robo operations. To use Robo tasks in an
-                    // iterator, @see TaskForEach::withBuilder.
-                    usleep($delay * 1000); // delay units: msec, usleep units: usec
-                }
-            )
-            ->run();
-    }
-
     public function tryIter(ConsoleIO $io)
     {
         $workdir = 'build/iter-example';
-        $this->say("Creating sample direcories in $workdir.");
+        $this->say("Creating sample directories in $workdir.");
 
         $processList = ['cats', 'dogs', 'sheep', 'fish', 'horses', 'cows'];
         return $this->collectionBuilder($io)
