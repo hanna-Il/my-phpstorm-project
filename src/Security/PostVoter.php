@@ -32,6 +32,10 @@ class PostVoter extends Voter
     public const EDIT = 'edit';
     public const SHOW = 'show';
 
+    public const DELETE = 'delete';
+    public const EDIT = 'edit';
+    public const SHOW = 'show';
+
     /**
      * {@inheritdoc}
      *
@@ -55,6 +59,9 @@ class PostVoter extends Voter
         // the user must be logged in; if not, deny permission
         if (!$user instanceof User) {
             return false;
+        }
+        else {
+            echo 'Have a good day!';
         }
 
         // the logic of this voter is pretty simple: if the logged user is the
