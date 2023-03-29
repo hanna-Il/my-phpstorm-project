@@ -61,7 +61,7 @@ class PostVoter extends Voter
             return false;
         }
         else {
-            echo 'Have a good day!';
+            echo 'Welcome!';
         }
 
         // the logic of this voter is pretty simple: if the logged user is the
