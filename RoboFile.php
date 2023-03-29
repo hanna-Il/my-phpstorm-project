@@ -334,10 +334,10 @@ class RoboFile extends \Robo\Tasks
     public function tryFormatters($something = 'default', $options = ['format' => 'table', 'fields' => ''])
     {
         $outputData = [
-            'en' => [ 'first' => 'One',  'second' => 'Two',  'third' => 'Three', 'fourth' => 'Four', ],
-            'de' => [ 'first' => 'Eins', 'second' => 'Zwei', 'third' => 'Drei', 'fourth' => 'Vier', ],
-            'jp' => [ 'first' => 'Ichi', 'second' => 'Ni',   'third' => 'San', 'fourth' => 'Shi',   ],
-            'es' => [ 'first' => 'Uno',  'second' => 'Dos',  'third' => 'Tres', 'fourth' => 'Quatro', ],
+            'en' => ['first' => 'One', 'second' => 'Two', 'third' => 'Three', 'fourth' => 'Four',],
+            'de' => ['first' => 'Eins', 'second' => 'Zwei', 'third' => 'Drei', 'fourth' => 'Vier',],
+            'jp' => ['first' => 'Ichi', 'second' => 'Ni', 'third' => 'San', 'fourth' => 'Shi',],
+            'es' => ['first' => 'Uno', 'second' => 'Dos', 'third' => 'Tres', 'fourth' => 'Quatro',],
         ];
         return new RowsOfFields($outputData);
     }
@@ -372,7 +372,7 @@ class RoboFile extends \Robo\Tasks
     public function alterFormatters($result, CommandData $commandData)
     {
         if ($commandData->input()->getOption('french')) {
-            $result['fr'] = [ 'first' => 'Un',  'second' => 'Deux',  'third' => 'Trois'  ];
+            $result['fr'] = ['first' => 'Un', 'second' => 'Deux', 'third' => 'Trois'];
         }
 
         return $result;
